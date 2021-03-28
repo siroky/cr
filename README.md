@@ -6,7 +6,6 @@ Over the past 10+ years, in total I've spent majority of my time doing code revi
 
 It doesn't matter what the exact code style rules are (e.g. the infamous spaces vs. tabs discussion), what really matters is how consistently they're followed. With consistent code-style, it's easy to spot errors just based on visual "look" of the code. Or by simply noticing that something feels odd. **Consistency leads to error prevention.** Some things you are not able to express in the type system, however consistent follow through on conventions can partially make up for that. That's the main driver, but readability and understandability are important as well.
 
-
 ## Naming
 
 ## Performance
