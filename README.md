@@ -7,7 +7,7 @@ Over the past years, I've spent a lot of time doing code reviews. At least that'
 It doesn't matter what the exact code style rules are (e.g. the infamous spaces vs. tabs discussion), what really matters is how consistently they're followed. With consistent code-style, it's easy to spot errors just based on visual "look" of the code. Or by simply noticing that something feels odd. **Consistency leads to error prevention.** Some things you are not able to express in the type system, however consistent follow through on conventions can partially make up for that. That's the main driver, but readability and understandability are important as well.
 
 - If not specified otherwise, follow industry code style standards of the language by default.
-- If two othings or operations are happening on single line, consider splitting into two lines, utilizing properly named variables. Length of a line is usually good indicator, the longer the line, the higher chance it does more than it should.
+- If two things or operations are happening on single line, consider splitting into two lines, utilizing properly named variables. Length of a line is usually good indicator, the longer the line, the higher the chance it does more than it should.
 - Instead of complex expressions, prefer a sequence of simple expressions with results in variables. To understand the algorithm, it then usually suffices to read the variable names like a story.
 - If methods are doing two things, consider splitting them into multiple methods. Size of a method is usually good indicator, the bigger the method, the higher chance it does too much.
 - Ordering of anything shouldn't be random, but should follow some logic. When adding a new thing, putting it as the last is almost always bad, rather consider the appropriate position among the other members. Related methods should usually be closer together, overoads should be close together.
@@ -39,16 +39,16 @@ It doesn't matter what the exact code style rules are (e.g. the infamous spaces 
 
 ## Performance
 
-The following several things are rather low-hanging fruit, however don't take it too literally, everyone of these might be justified. Usually, those are performance issue suspects:
+The following several things are rather low-hanging fruit, however don't take it too literally. Each of these might be justified. Usually, these are the most common performance issue suspects:
 
-- Is a new loop being introduced? Check how it will perform, how hot is the path and complexity of the body.
+- Is a new loop being introduced? Check how it will perform, how hot the path is and complexity of the body.
 - Is a new database query invoked? Check whether it's really needed, cannot be merged with some previous query or avoided otherwise. Check how it will perform and whether it is indexed properly if needed.
-- Is there a database query or other IO operation inside loop? Consider converting it into batch operation if possible or avoid otherwise.
-- If there performance-sensitive operation being introduced or you're not sure, make sure it is discussed and evaluated.
+- Is there a database query or other IO operation inside loop? Consider converting it into a batch operation if possible or avoid otherwise.
+- If there is a performance-sensitive operation being introduced or you're not sure, make sure it is discussed and evaluated.
 
 ## Security
 
-- On all application bounderies, ensure access is authenticated and authorized. Especially in APIs and web pages.
+- On all application boundaries, ensure access is authenticated and authorized. Especially in APIs and web pages.
 - Avoid any sensitive information like access tokens in URLs. Prefer HTTP-only cookies.
 
 ## Miscellaneous
@@ -61,5 +61,5 @@ The following several things are rather low-hanging fruit, however don't take it
 - Fail fast. In case of e.g. contract check, make sure the detection of that is as soon as possible which minimizes the space that needs to be searched for the issue.
 - Future-proof your code. Think of what will happen in the future if someone else comes in and extends your code naively. Will it lead to errors? Try to prevent this.
 - Unhandled exceptions should only happen for stuff, that developers can actually fix. Always think of whether occurrence of an exception will trigger a developer to do something about it. If the developer wouldn't be able to do anything, then it should usually be handled otherwise (communicated to end user, retried...).
-- Is there a comment nearby the code you're modifying? Always check that it's still valid after your changes.
+- Is there a comment near the code you're modifying? Always check that it's still valid after your changes.
 - The bigger the scope, the better the code should be in terms of all aspects. During code review, put most emphasis on parts with global scope, e.g. core library.
